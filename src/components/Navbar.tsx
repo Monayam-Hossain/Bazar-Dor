@@ -1,26 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [formattedDate, setFormattedDate] = useState("");
 
-  useEffect(() => {
-    const dateStr = new Date().toLocaleString("bn-BD", {
+  const formattedDate = new Date().toLocaleString("bn-BD", {
       dateStyle: "full",
     });
-    setFormattedDate(dateStr);
-  }, []);
 
   return (
     <nav className="w-full bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Left Side — Logo & Date */}
+          
           <div className="flex items-center gap-3">
-            {/* ✅ Green Logo Box with Your Image */}
+           
             <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-xl p-1.5">
               <Image
                 src="/images/logo-icon.png"
@@ -28,12 +24,12 @@ export default function Navbar() {
                 width={28}
                 height={28}
                 className="object-contain"
-                // If your image has a white background, add this to blend it:
+                
                 style={{ filter: "brightness(0) invert(1)" }}
               />
             </div>
 
-            {/* Title & Date */}
+            
             <div className="flex flex-col">
               <h1 className="text-lg font-bold text-gray-900 leading-tight">
                 বাজার দর
@@ -44,7 +40,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Right Side — User Profile */}
+          
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
