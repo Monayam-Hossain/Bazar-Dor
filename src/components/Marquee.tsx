@@ -1,4 +1,5 @@
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
+import { RxDash } from "react-icons/rx";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
@@ -62,13 +63,17 @@ const Marquee = async () => {
                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold ${
                     data.change.dir === "up"
                       ? "bg-red-50 text-red-600"
-                      : "bg-green-50 text-green-600"
+                      : data.change.dir === "down"
+                      ? "bg-green-50 text-green-600"
+                      : "bg-gray-50 text-gray-600"
                   }`}
                 >
                   {data.change.dir === "up" ? (
                     <FaCaretUp className="text-xs" />
-                  ) : (
+                  ) : data.change.dir === "down" ? (
                     <FaCaretDown className="text-xs" />
+                  ) : (
+                    <RxDash className="text-xs" />
                   )}
                   <span>{(data.change.pct)}%</span>
                 </div>
