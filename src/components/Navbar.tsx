@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -7,40 +8,37 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const formattedDate = new Date().toLocaleString("bn-BD", {
-      dateStyle: "full",
-    });
+    dateStyle: "full",
+  });
 
   return (
     <nav className="w-full bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          
-          <div className="flex items-center gap-3">
-           
-            <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-xl p-1.5">
-              <Image
-                src="/images/logo-icon.png"
-                alt="বাজার দর লোগো"
-                width={28}
-                height={28}
-                className="object-contain"
-                
-                style={{ filter: "brightness(0) invert(1)" }}
-              />
-            </div>
+          <Link href="/">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-xl p-1.5">
+                <Image
+                  src="/images/logo-icon.png"
+                  alt="বাজার দর লোগো"
+                  width={28}
+                  height={28}
+                  className="object-contain"
+                  style={{ filter: "brightness(0) invert(1)" }}
+                />
+              </div>
 
-            
-            <div className="flex flex-col">
-              <h1 className="text-lg font-bold text-gray-900 leading-tight">
-                বাজার দর
-              </h1>
-              <p className="text-xs text-gray-500 leading-tight">
-                {formattedDate}
-              </p>
+              <div className="flex flex-col">
+                <h1 className="text-lg font-bold text-gray-900 leading-tight">
+                  বাজার দর
+                </h1>
+                <p className="text-xs text-gray-500 leading-tight">
+                  {formattedDate}
+                </p>
+              </div>
             </div>
-          </div>
+          </Link>
 
-          
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}

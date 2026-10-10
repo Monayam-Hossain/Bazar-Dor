@@ -15,25 +15,24 @@ interface IProduct {
 }
 
 export default async function ProductSections() {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products", {
-    next: { revalidate: 300 },
-  });
+  const res = await fetch(
+    "https://api.api-store.workers.dev/api/bazardor/products",
+    {
+      next: { revalidate: 300 },
+    },
+  );
   const datas: IProduct[] = await res.json();
-
 
   const increasedProducts = datas
     .filter((item) => item.change.dir === "up")
     .slice(0, 6);
-
 
   const decreasedProducts = datas
     .filter((item) => item.change.dir === "down")
     .slice(0, 6);
 
   return (
-
     <div className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-12">
-      
       {increasedProducts.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center gap-2 font-bold text-lg md:text-xl">
@@ -66,7 +65,9 @@ export default async function ProductSections() {
 
       <section id="sob-ponyo" className="space-y-4 pt-4 scroll-mt-20">
         <div>
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900">সব পণ্য</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900">
+            সব পণ্য
+          </h2>
           <p className="text-sm text-gray-500 mt-0.5">
             মোট {datas.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে
           </p>
@@ -78,7 +79,6 @@ export default async function ProductSections() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }
@@ -92,8 +92,8 @@ function ProductCard({ product }: { product: IProduct }) {
   };
 
   return (
-    <Link 
-      href={`/products/${product.id}`}
+    <Link
+      href={`/product/${product.id}`}
       className="card bg-white shadow-sm border border-base-200 rounded-2xl p-4 md:p-5 flex flex-col justify-between hover:shadow-md hover:border-gray-300 transition-all cursor-pointer group"
     >
       <div className="flex items-center gap-3">
@@ -110,7 +110,9 @@ function ProductCard({ product }: { product: IProduct }) {
 
       <div className="flex items-end justify-between mt-4 pt-3 border-t border-gray-100">
         <div>
-          <span className="text-xs text-gray-400 block font-normal">আজকের দাম</span>
+          <span className="text-xs text-gray-400 block font-normal">
+            আজকের দাম
+          </span>
           <span className="text-lg font-bold text-gray-900">
             {formatNumber(product.today)} টাকা
           </span>
@@ -121,17 +123,11 @@ function ProductCard({ product }: { product: IProduct }) {
             isUp
               ? "bg-red-50 text-red-600"
               : isDown
-              ? "bg-green-50 text-green-600"
-              : "bg-gray-100 text-gray-600"
+                ? "bg-green-50 text-green-600"
+                : "bg-gray-100 text-gray-600"
           }`}
         >
-          {isUp ? (
-            <FaCaretUp />
-          ) : isDown ? (
-            <FaCaretDown />
-          ) : (
-            <RxDash />
-          )}
+          {isUp ? <FaCaretUp /> : isDown ? <FaCaretDown /> : <RxDash />}
           <span>{formatNumber(product.change.pct)}%</span>
         </div>
       </div>

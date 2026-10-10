@@ -30,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Suspense fallback={<div>Loading...</div>}>
           <Marquee />
         </Suspense>
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <main className="px-4 sm:px-6 lg:px-8 py-6">
           {children}
         </main>
       </body>

@@ -5,11 +5,10 @@ import { Suspense } from "react";
 export default function Home() {
   return (
     <div>
-      
         <Suspense fallback={<div>লোড হচ্ছে...</div>}>
           <Hero />
         </Suspense>
-      <ProductSections />
+        <ProductSections />
     </div>
   );
 }
