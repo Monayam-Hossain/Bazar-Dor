@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
 import Navlinks from "@/components/Navlinks";
 import Marquee from "@/components/Marquee";
+import ToastProviderLoader from "@/components/ToastProviderLoader";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["latin", "bengali"],
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="px-4 sm:px-6 lg:px-8 py-6">
           {children}
         </main>
+        <ToastProviderLoader />
       </body>
     </html>
   );
