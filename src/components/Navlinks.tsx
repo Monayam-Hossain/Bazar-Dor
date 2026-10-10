@@ -9,7 +9,7 @@ interface ICategory {
 
 const Navlinks = async () => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories",
+    "https://api.abcz.workers.dev/api/bazardor/categories",
     { cache: "no-store" },
   );
   const datas: ICategory[] = await res.json();
