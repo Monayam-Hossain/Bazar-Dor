@@ -72,7 +72,7 @@ export default function CategoryContent({
 
   if (!products || products.length === 0) {
     return (
-      <div className="mx-auto max-w-7xl not-only:min-h-[50vh] flex flex-col items-center justify-center text-center bg-white border border-base-200 rounded-2xl p-8 space-y-4 shadow-sm">
+      <div className="mx-auto max-w-7xl min-h-[50vh] flex flex-col items-center justify-center text-center bg-white border border-base-200 rounded-2xl p-8 space-y-4 shadow-sm">
         <div className="text-5xl">🛒</div>
         <h2 className="text-2xl font-bold text-gray-800">
           কোনো পণ্য পাওয়া যায়নি

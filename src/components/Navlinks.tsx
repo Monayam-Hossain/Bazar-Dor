@@ -16,7 +16,7 @@ const Navlinks = async () => {
   return (
     <div className="w-full border-b border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center gap-2 sm:gap-3 py-3 overflow-x-auto scrollbar-hide">
+        <nav className="flex items-center gap-1.5 sm:gap-2 lg:gap-3 py-2 sm:py-2.5 overflow-x-auto scrollbar-hide">
           {datas.map((data) => (
             <NavLinkItem key={data.id} category={data} />
           ))}

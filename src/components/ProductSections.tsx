@@ -41,9 +41,11 @@ export default async function ProductSections() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {increasedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {[...increasedProducts]
+              .sort((a, b) => (b.change?.pct || 0) - (a.change?.pct || 0))
+              .map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
           </div>
         </section>
       )}
@@ -56,9 +58,11 @@ export default async function ProductSections() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {decreasedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {[...decreasedProducts]
+              .sort((a, b) => (b.change?.pct || 0) - (a.change?.pct || 0))
+              .map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
           </div>
         </section>
       )}

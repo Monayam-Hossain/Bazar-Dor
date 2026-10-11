@@ -46,7 +46,8 @@ export default function Navbar() {
   return (
     <nav className="w-full bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        {/* Increased height from h-16 to h-20 */}
+        <div className="flex items-center justify-between h-20">
           <Link href="/">
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-xl p-1.5">
@@ -60,7 +61,7 @@ export default function Navbar() {
                 />
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-1">
                 <h1 className="text-lg font-bold text-gray-900 leading-tight">
                   বাজার দর
                 </h1>
