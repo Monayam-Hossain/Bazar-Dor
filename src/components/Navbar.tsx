@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { FiChevronDown, FiUser, FiLogOut } from "react-icons/fi";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   const { data: session, isPending } = authClient.useSession();
@@ -17,7 +18,6 @@ export default function Navbar() {
     dateStyle: "full",
   });
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -33,14 +33,18 @@ export default function Navbar() {
 
   const handleSignOut = async () => {
     setDropdownOpen(false);
-    await authClient.signOut();
+    const { error } = await authClient.signOut();
+    if (error) {
+      toast.error("সাইন আউট ব্যর্থ হয়েছে");
+    } else {
+      toast.success("সাইন আউট হয়েছে");
+    }
   };
 
   return (
     <nav className="w-full bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link href="/">
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-xl p-1.5">
@@ -65,12 +69,9 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Right side */}
           {isPending ? (
-            // Loading placeholder — avoids layout jump while session resolves
             <div className="h-9 w-28 bg-gray-100 rounded-lg animate-pulse" />
           ) : user ? (
-            /* ----- Signed in: avatar + name + dropdown (image 2 & 3) ----- */
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -105,7 +106,6 @@ export default function Navbar() {
 
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-2xl shadow-lg z-50 overflow-hidden">
-                  {/* User info header */}
                   <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-100">
                     <div className="w-11 h-11 rounded-full overflow-hidden bg-gray-300 shrink-0 relative">
                       {user.image ? (
@@ -132,7 +132,6 @@ export default function Navbar() {
                     </div>
                   </div>
 
-                  {/* Menu items */}
                   <div className="py-1.5">
                     <Link
                       href="/profile"
@@ -154,7 +153,6 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            /* ----- Signed out: sign in / sign up buttons (image 1) ----- */
             <div className="flex items-center gap-3">
               <Link
                 href="/signin"

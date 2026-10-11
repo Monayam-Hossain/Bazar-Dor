@@ -38,7 +38,7 @@ interface PageProps {
 async function getProduct(productId: string): Promise<IProduct | null> {
   try {
     const res = await fetch(
-      `https://api.abcz.workers.dev/api/bazardor/products/${productId}`,
+      `https://openapi.programming-hero.com/api/bazardor/products/${productId}`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return null;

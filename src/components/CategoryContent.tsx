@@ -37,7 +37,7 @@ export default function CategoryContent({
     async function fetchCategoryProducts() {
       try {
         const res = await fetch(
-          `https://api.abcz.workers.dev/api/bazardor/products?category=${categoryId}`,
+          `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
         );
         const data = await res.json();
         const productList = Array.isArray(data) ? data : data.products || [];
