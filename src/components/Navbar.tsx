@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FiChevronDown, FiUser, FiLogOut } from "react-icons/fi";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 
 export default function Navbar() {
   const { data: session, isPending } = authClient.useSession();
@@ -38,6 +39,7 @@ export default function Navbar() {
       toast.error("সাইন আউট ব্যর্থ হয়েছে");
     } else {
       toast.success("সাইন আউট হয়েছে");
+      redirect("/");
     }
   };
 
@@ -106,31 +108,33 @@ export default function Navbar() {
 
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-2xl shadow-lg z-50 overflow-hidden">
-                  <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-100">
-                    <div className="w-11 h-11 rounded-full overflow-hidden bg-gray-300 shrink-0 relative">
-                      {user.image ? (
-                        <img
-                          src={user.image}
-                          alt={user.name || "User"}
-                          width={44}
-                          height={44}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-base font-bold text-white bg-green-600">
-                          {user.name?.charAt(0) || "U"}
-                        </div>
-                      )}
+                  <Link href="/profile">
+                    <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-100">
+                      <div className="w-11 h-11 rounded-full overflow-hidden bg-gray-300 shrink-0 relative">
+                        {user.image ? (
+                          <img
+                            src={user.image}
+                            alt={user.name || "User"}
+                            width={44}
+                            height={44}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-base font-bold text-white bg-green-600">
+                            {user.name?.charAt(0) || "U"}
+                          </div>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-gray-900 truncate">
+                          {user.name}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {user.email}
+                        </p>
+                      </div>
                     </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-bold text-gray-900 truncate">
-                        {user.name}
-                      </p>
-                      <p className="text-xs text-gray-500 truncate">
-                        {user.email}
-                      </p>
-                    </div>
-                  </div>
+                  </Link>
 
                   <div className="py-1.5">
                     <Link

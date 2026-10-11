@@ -64,7 +64,7 @@ async function ProductDetailsContent({ params }: Pick<PageProps, "params">) {
 
   if (!product) {
     return (
-      <div className="min-h-[50vh] flex flex-col items-center justify-center text-center bg-white border border-base-200 rounded-2xl p-8 space-y-4 shadow-sm">
+      <div className="mx-auto max-w-7xl min-h-[50vh] flex flex-col items-center justify-center text-center bg-white border border-base-200 rounded-2xl p-8 space-y-4 shadow-sm">
         <div className="text-5xl">🔍</div>
         <h2 className="text-2xl font-bold text-gray-800">পণ্য পাওয়া যায়নি</h2>
         <p className="text-gray-500 max-w-md">
